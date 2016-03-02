@@ -1,0 +1,252 @@
+<html>
+<head>
+	<title>test control object </title>
+	
+	<style type="text/css">
+	
+		body{
+			overflow:hidden;
+		}
+	
+		#head{
+			width: 590px;
+			height: 100px;
+			background: black;
+			color: white;
+			margin: 0 auto;
+			border: 1px solid Gray;
+			font-family: arial;
+			font-size: 18;
+			padding-left: 10px;
+			padding-top: 10px;
+
+
+		}
+		#footer{
+			width: 590px;
+			height: 100px;
+			background: black;
+			color: white;
+			margin: 0 auto;
+			border: 1px solid Gray;
+			font-family: arial;
+			font-size: 18;
+			padding-left: 10px;
+			padding-top: 10px;
+		}
+		#container{
+			height: 400px;
+			width: 600px; 
+			outline: 1px solid black;
+			position: relative;
+			margin: 0 auto;
+			background-image: url(image/background_image.jpg);
+		}
+		#guy{
+			position: absolute;
+			height: 40px;
+			width: 40px;
+			border: 1px solid red;
+			background: none;
+			left: 260px;
+			top: 160px;
+			border-radius: 26px;
+		}
+		#guy1{
+			position: absolute;
+			height: 50px;
+			width: 50px;
+			border: 0px solid black;
+			background: none;
+			left: 0px;
+			top: 0 px;
+			border-radius: 25px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div id="head"> </div>
+	<div id ="container">
+		<div id="guy1">
+			<img src="image/bird.gif">
+		</div>
+		<div id="guy">
+			<img src="image/snip.png">
+		</div>
+		
+
+	</div>
+	<div id= "footer"> 
+		Developed by: Group 4
+		<p> CICI. IT year3 s1 g6, copyright &copy; 2014</p>
+	</div>
+
+	<script type="text/javascript">
+
+		var guy = document.getElementById('guy');
+		var guy1 = document.getElementById('guy1')
+		var container = document.getElementById('container');
+		var guyleft = 0;
+		var guytop = 0;
+		var counter = 5;  
+		var g_left = 0;
+		var g_top = 0;
+		var Score = 0;
+		var life = 5;
+		var level = 1;
+		var speed = 7;
+
+		//variable sound 
+		var shot_snd = new Audio("shot_snd.wav"); // buffers automatically when created
+		var bird_die = new Audio("bird_die.wav"); // buffers automatically when created
+		var s_level_up = new Audio("levelup.mp3"); // buffers automatically when created
+		//snd.play();
+ 
+
+
+		function rand_p(){
+			
+			g_left = Math.floor((Math.random() * 550) + 1);;
+			g_top = Math.floor((Math.random() * 350) + 1);;
+			guy1.style.left = g_left + 'px';
+			guy1.style.top = g_top + 'px';
+		}
+
+		function anim(e){
+			
+			if (e.keyCode == 37){
+				to_left();
+			}
+			if (e.keyCode == 39){
+				to_right();
+			}
+			if (e.keyCode == 38){
+				to_up();
+			}
+			if (e.keyCode == 40){
+				to_down();
+			}
+			if (e.keyCode == 13){
+				var x = guyleft;
+				var y = guytop;
+				var x1 = g_left;
+				var y1 = g_top;
+				shot(x,y,x1,y1);
+				
+			}
+			//alert (e.keyCode);
+			if(e.keyCode == 27){
+				stop();
+			}
+			
+			
+		}
+
+		var myVar=setInterval(function(){myTimer()},1000);
+		var d = 0;
+		function myTimer() {
+   			//to_down();
+   			
+   			counter = counter - 1;
+   			document.getElementById('head').innerHTML ="Bird Time :  " + counter +'<br>Score : ' + Score + '<br> Your Life : ' + life + '<br> level : ' + level ;
+
+   			if (counter == 0) {
+   				rand_p();
+   				counter = speed;
+   				life = life -1;
+   				
+   			}
+   			if (life == 0){
+   				game_over();
+   			}
+   		
+   			
+
+		}
+		function shot(x, y, x1, y1){
+			//alert ("x =" + x +"y =" + y + "x1 = " + x1 + "y1=" + y1);
+			if (x > x1 -17 && x < x1 + 17 && y > y1 - 17 && y < y1+17){
+				//alert("good");
+				Score = Score +10;
+					if (Score == 100){level = 2; speed = 6;  s_level_up.play(); life= 5; }//level 2
+					if (Score == 250){level = 3; speed = 5;  s_level_up.play(); life= 5; }//level 3
+					if (Score == 500){level = 4; speed = 4;  s_level_up.play(); life= 5; }//level 4
+					if (Score == 1000){level = 5; speed = 3;  s_level_up.play(); life= 5; }//level 5
+					if (Score == 1600){level = 6; speed = 2;  s_level_up.play(); life= 5; }//level 5
+
+				rand_p();
+				counter = speed;
+				shot_snd.play();
+				bird_die.play();
+			}
+			else{
+				shot_snd.play();
+				//alert("badly");
+				if(life > 1 ){
+					//life = life - 1;	
+				}
+				else{
+					
+					game_over();
+				}
+
+			}
+
+		}
+
+		function game_over(){
+			alert ("Game over !! <br> Press Enter Key to Resurm");
+					life = 5;
+					Score = 0;
+					counter = 5;
+		}
+		//function up and auto down
+		
+		function to_up(){
+			guytop -=20;
+			if(guytop >=0){
+				guy.style.top = guytop + 'px';
+			}
+			else
+				guytop = 0;
+		}
+		function to_down(){
+			guytop +=20;
+			if(guytop <= 350){
+				guy.style.top = guytop + 'px';
+			}
+			else
+				guytop = 350;
+		}
+		function to_left(){
+			guyleft -=20;
+			if(guyleft >=0){
+				guy.style.left = guyleft + 'px';
+			}
+			else
+				guyleft = 0;
+
+		}
+		function to_right(){
+			guyleft +=20;
+			if (guyleft <=550){
+				guy.style.left = guyleft + 'px';
+			}
+			else
+				guyleft = 550;
+		}
+		
+		function stop(){
+
+			alert("Paused ! Press Enter to Resurm !")
+
+		}
+		//main function
+		rand_p();
+		document.onkeydown = anim ; 
+
+
+	</script>
+</body>
+</html>

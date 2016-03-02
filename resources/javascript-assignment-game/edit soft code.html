@@ -1,0 +1,115 @@
+<html>
+<head>
+	<title>test control object </title>
+	
+	<style type="text/css">
+		#container{
+			height: 400px;
+			width: 600px;
+			outline: 1px solid black;
+			position: relative;
+			margin: 0 auto;
+		}
+		#guy{
+			position: absolute;
+			height: 50px;
+			width: 50px;
+			outline: 1px solid black;
+			background: red;
+			left: 550px;
+			top: 0 px;
+		}
+		#guy1{
+			position: absolute;
+			height: 50px;
+			width: 50px;
+			outline: 1px solid black;
+			background: blue;
+			left: 550px;
+			top: 0 px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div id="head"> </div>
+	<div id ="container">
+		<div id="guy1">
+
+		</div>
+		<div id="guy">
+
+		</div>
+		
+
+	</div>
+
+	<script type="text/javascript">
+
+		var guy = document.getElementById('guy');
+		var guy1 = document.getElementById('guy1')
+		var container = document.getElementById('container');
+		var guyleft = 0;
+		var guytop = 0;
+
+		function rand_p(){
+			var g_left, g_top;
+			g_left = Math.floor((Math.random() * 550) + 1);;
+			g_top = Math.floor((Math.random() * 350) + 1);;
+			guy1.style.left = g_left + 'px';
+			guy1.style.top = g_top + 'px';
+		}
+
+		function anim(e){
+
+			if (e.keyCode == 39){
+				guyleft +=50;
+				if (guyleft <=550){
+					guy.style.left = guyleft + 'px';
+				}
+				else
+					guyleft = 550;
+				
+			}
+			if (e.keyCode == 37){
+				guyleft -=50;
+				if(guyleft >=0){
+					guy.style.left = guyleft + 'px';
+				}
+				else
+					guyleft = 0;
+			}
+			if (e.keyCode == 38){
+				guytop -=50;
+				if(guytop >=0){
+					guy.style.top = guytop + 'px';
+				}
+				else
+					guytop = 0;
+				
+			}
+			if (e.keyCode == 40){
+				guytop +=50;
+				if(guytop <= 350){
+					guy.style.top = guytop + 'px';
+				}
+				else
+					guytop = 350 ;
+				
+			}
+		}
+
+		var myVar=setInterval(function(){myTimer()},1000);
+		var d = 0;
+		function myTimer() {
+   			rand_p();
+		}
+
+		//main function
+		document.onkeydown = anim ;  
+
+
+
+	</script>
+</body>
+</html>
