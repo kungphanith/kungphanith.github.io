@@ -17,3 +17,8 @@ var options = [
   // {selector: '#image-test', offset: 500, callback: 'Materialize.fadeInImage("#image-test")' }
 ];
 Materialize.scrollFire(options);
+
+
+$(document).ready(function(){
+  $('.modal-trigger').leanModal();
+});
