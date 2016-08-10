@@ -20,3 +20,61 @@ $(window).bind('scroll', function () {
 $('demo-video-box').click(function(){
     console.log('event handler');
 });
+
+
+$(document).ready(function(){
+
+    
+
+    if($(document).width() >= 1200 ){
+        $('.loader').hide('fast');
+        $('#page1').show('slow');
+        $('#image1-clip-mask').fadeIn('slow');
+
+
+        // shap1 animation
+        $('#shap1').css('left', '50%');
+        $('#shap1').animate({'left':'50px'}, 'slow');
+
+        // shap2 animation
+        $('#shap2').css('bottom', '50%');
+        $('#shap2').animate({'bottom':'170px'}, 'slow');
+
+        // profile-box animation
+        $('#profile-box').css('opacity', '0');
+        $('#profile-box').animate({'opacity':'1'}, 'slow');
+
+        // Image1 Animation
+        $('#image1-clip-mask').css('width', '0');
+        $('#image1-clip-mask').animate({'width':'30%'}, 'fast');
+    }
+    else{
+        $('.loader').hide('fast');
+        $('#page1').show('slow');
+        $('#image1-clip-mask').fadeIn('slow');
+
+
+        // shap1 animation
+        $('#shap1').css('left', '50%');
+        $('#shap1').animate({'left':'10px'}, 'slow');
+
+        // shap2 animation
+        $('#shap2').css('bottom', '50%');
+        $('#shap2').animate({'bottom':'100px'}, 'slow');
+
+        // profile-box animation
+        $('#profile-box').css('opacity', '0');
+        $('#profile-box').animate({'opacity':'1'}, 'slow');
+
+        // Image1 Animation
+        $('#image1-clip-mask').css('width', '0');
+        $('#image1-clip-mask').animate({'width':'100%'}, 'fast');
+    }
+    
+
+    $('.link').click(function(){
+        $('.page').fadeOut('slow');
+        $('#'+ $(this).attr('linkTo')).fadeIn('slow');
+    });
+
+})

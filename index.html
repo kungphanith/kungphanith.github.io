@@ -8,60 +8,51 @@
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+    <link rel="shortcut icon" type="images" href="images/profile1-croped.jpg"/>
 </head>
 <body>
-    
-    
-        
-    <!-- layer1 -->
-    <div id="image1-clip-mask">
-        <img id="image1" src="images/image1.jpg" >
-    </div>
-    <!-- layer2 -->
-    <div id="shap1" >
-        Web Design & Developer
-    </div>
-    <!-- layer3 -->
-    <div id="shap2" >
-        Welcome to get in touch with me.
+    <div class="loader" >
+        <img src="images/breakin.gif-c200" height="45px">
+        Loading...
     </div>
 
-    <!-- layer4 -->
-    <div id="profile-box" >
-        <img src="images/profile1-croped.jpg" align="left" >
-            <span class="title">Phanith Kung</span><br>
-            <span class="small">Professional Web Developer</span>
+    <div class="content page" id="page1">
+        <img src="images/screen1.png" class="background-image">
+        <!-- layer1 -->
+        <div id="image1-clip-mask">
+            <img id="image1" src="images/image1.jpg" >
+        </div>
+        <!-- layer2 -->
+        <div id="shap1" >
+            Web Developer & Design
+        </div>
+        <!-- layer3 -->
+        <div id="shap2" class="link" linkTo="page2" >
+            More about me...
+        </div>
+
+        <!-- layer4 -->
+        <div id="profile-box" >
+            <img src="images/profile1-croped.jpg" align="left" >
+            	<br>
+                <span class="title">Phanith Kung</span><br>
+                <span class="small">Professional Web Developer</span>
+        </div>
+
+
+       
+
     </div>
 
-
-    <div id="description-box" >
-        
-        <br>
-        <br>
-        <div class="row" >
-            <div class="col-md-6 col-md-offset-3" >
-                <div class="row" >
-                    <div class="col-md-3" >
-                        Hello
-                    </div>
-                    <div class="col-md-3" >
-                        Hello
-                    </div>
-                    <div class="col-md-3" >
-                        Hello
-                    </div>
-                    <div class="col-md-3" >
-                        Hello
-                    </div>
-                </div>
-            </div>
-
-            
+    <div class="content page" id="page2" style="display: none">
+        <!-- <img src="images/screen1.png" class="background-image"> -->
+        <div class="content-area" >
+            Hi, I will comming soon..!<br>
+            Being Construction
+            <br>
+            <div class="link btn " style="border-radius: 1px; background: yellow; color: black; font-weight: bold " linkTo="page1" >Back To Home</div>
         </div>
     </div>
-
-
 
 </body>
 <!--  Scripts-->
@@ -69,5 +60,4 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script src="js/script.js"></script>
-<script src="js/init.js"></script>
 </html>
